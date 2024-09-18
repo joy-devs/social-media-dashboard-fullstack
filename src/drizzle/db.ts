@@ -1,5 +1,4 @@
 import "dotenv/config";
-//import{drizzle} from "drizzle-orm/node-postgres";
 import {drizzle} from "drizzle-orm/neon-http";
 import{Client} from "pg";
 import { neon } from "@neondatabase/serverless";
@@ -9,11 +8,11 @@ import Stripe from "stripe";
  
  
  
-export const client = new Client({connectionString: process.env.Database_URL as string,})
+export const client = new Client({connectionString: process.env.DATABASE_URL as string,})
  
  
  
-const DatabaseUrl = process.env.Database_URL as string;
+const DatabaseUrl = process.env.DATABASE_URL as string;
  
 if (!DatabaseUrl) {
     throw new Error("DatabaseUrl not set");
@@ -35,5 +34,5 @@ export const stripe = new Stripe(process.env.STRIPE_SECRET_API_KEY as string,{
  
 main().catch((err)=> console.log(err));
  
-//const db = drizzle(client, { schema,logger:true});
+
 export default db;
