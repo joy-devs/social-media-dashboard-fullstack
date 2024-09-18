@@ -4,21 +4,38 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "dev": "tsx watch src/index.ts",
+    "start": "node ./dist/index.js",
+    "build": "tsc",
+    "gen": "drizzle-kit generate",
+    "migrate": "tsx src/drizzle/migrate.ts",
+    "studio": "drizzle-kit studio",
+    "push": "drizzle-kit generate && tsx src/drizzle/migrate.ts"
   },
   "keywords": [],
   "author": "",
   "license": "ISC",
-  "dependencies": {
-    "dotenv": "^16.4.5",
-    "drizzle-orm": "^0.33.0",
-    "pg": "^8.13.0"
-  },
   "devDependencies": {
-    "@types/node": "^22.5.5",
-    "@types/pg": "^8.11.10",
-    "drizzle-kit": "^0.24.2",
-    "tsx": "^4.19.1",
-    "typescript": "^5.6.2"
+    "@types/bcrypt": "^5.0.2",
+    "@types/node": "^20.14.9",
+    "@types/pg": "^8.11.6",
+    "bcrypt": "^5.1.1",
+    "drizzle-kit": "^0.22.7",
+    "tsx": "^4.15.7",
+    "typescript": "^5.5.2"
+  },
+  "dependencies": {
+    "@hono/node-server": "^1.11.4",
+    "@hono/zod-validator": "^0.2.2",
+    "@neondatabase/serverless": "^0.9.4",
+    "dotenv": "^16.4.5",
+    "drizzle-orm": "^0.31.2",
+    "ejs": "^3.1.10",
+    "hono": "^4.4.8",
+    "node-cron": "^3.0.3",
+    "nodemailer": "^6.9.14",
+    "pg": "^8.12.0",
+    "stripe": "^16.2.0",
+    "zod": "^3.23.8"
   }
 }
