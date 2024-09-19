@@ -40,3 +40,8 @@ export const follows = pgTable('follows', {
 export type TIUser = typeof users.$inferInsert;
 export type TSUser = typeof users.$inferSelect;
 
+// posts table
+export type TIPost = typeof users.$inferInsert;
+export type TSPost = typeof users.$inferSelect;
+
+

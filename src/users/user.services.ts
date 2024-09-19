@@ -15,7 +15,7 @@ export const getUsersTableService = async (id: number): Promise<TIUser | undefin
     return await db.query.users.findFirst({
         where: eq(users.id, id), 
         with:{
-            bookings:true
+            users:true
         }
     });
 }
