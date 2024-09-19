@@ -35,3 +35,8 @@ export const follows = pgTable('follows', {
   followingId: integer('following_id').references(() => users.id),
   createdAt: timestamp('created_at').defaultNow(),
 });
+
+//users table
+export type TIUser = typeof users.$inferInsert;
+export type TSUser = typeof users.$inferSelect;
+
