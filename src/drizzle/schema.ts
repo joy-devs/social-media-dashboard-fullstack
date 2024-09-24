@@ -14,7 +14,7 @@ export const users = pgTable('users', {
 // Posts table
 export const posts = pgTable('posts', {
   id: serial('id').primaryKey(),
-  authorId: integer('author_id').references(() => users.id),
+  authorId: integer('author_id').references(() => users.id),  // Foreign key to users table
   content: text('content').notNull(),
   createdAt: timestamp('created_at').defaultNow(),
 });
@@ -22,8 +22,8 @@ export const posts = pgTable('posts', {
 // Comments table
 export const comments = pgTable('comments', {
   id: serial('id').primaryKey(),
-  postId: integer('post_id').references(() => posts.id),
-  authorId: integer('author_id').references(() => users.id),
+  postId: integer('post_id').references(() => posts.id),  // Foreign key to posts table
+  authorId: integer('author_id').references(() => users.id),  // Foreign key to users table
   content: text('content').notNull(),
   createdAt: timestamp('created_at').defaultNow(),
 });
@@ -31,17 +31,24 @@ export const comments = pgTable('comments', {
 // Follows table
 export const follows = pgTable('follows', {
   id: serial('id').primaryKey(),
-  followerId: integer('follower_id').references(() => users.id),
-  followingId: integer('following_id').references(() => users.id),
+  followerId: integer('follower_id').references(() => users.id),  // Foreign key to users table
+  followingId: integer('following_id').references(() => users.id),  // Foreign key to users table
   createdAt: timestamp('created_at').defaultNow(),
 });
 
-//users table
+
+// Users table
 export type TIUser = typeof users.$inferInsert;
 export type TSUser = typeof users.$inferSelect;
 
-// posts table
-export type TIPost = typeof users.$inferInsert;
-export type TSPost = typeof users.$inferSelect;
+// Posts table
+export type TIPost = typeof posts.$inferInsert;
+export type TSPost = typeof posts.$inferSelect;
 
+// Comments table
+export type TIComment = typeof comments.$inferInsert;
+export type TSComment = typeof comments.$inferSelect;
 
+// Follows table
+export type TIFollow = typeof follows.$inferInsert;
+export type TSFollow = typeof follows.$inferSelect;
