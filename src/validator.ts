@@ -15,3 +15,9 @@ export const PostsSchema = z.object({
 export const commentsSchema = z.object({
 
 })
+export const profilesSchema = z.object({
+
+})
+export const notificationsSchema = z.object({
+    
+})

@@ -15,7 +15,7 @@ export const getusers = async (c: Context): Promise<Response> => {
   if (user) {
     return c.json(user);
   }
-  return c.json({ message: 'Book not found' }, 404);
+  return c.json({ message: 'User not found' }, 404);
 };
 
 // Create a new user

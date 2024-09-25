@@ -5,6 +5,8 @@ import { usersRouter } from "./users/user.router";
 import {postsRouter} from "./posts/post.router";
 import {commentsRouter} from "./comments/comment.router";
 import { followersRouter } from "./follows/follow.router";
+import {profilesRouter} from "./profiles/profiles.router";
+import {notificationsRouter} from "./notify/notify.router"
 
 
 import { cors } from 'hono/cors'
@@ -27,6 +29,8 @@ app.route("/api", usersRouter)
 app.route("/api", postsRouter)
 app.route("/api", commentsRouter )
 app.route("/api", followersRouter)
+app.route("/api", profilesRouter)
+app.route("/api", notificationsRouter)
 
 
 app.get("/", (c) => {

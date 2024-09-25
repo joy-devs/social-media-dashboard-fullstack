@@ -1,3 +1,9 @@
+DO $$ BEGIN
+ CREATE TYPE "public"."role" AS ENUM('user', 'admin');
+EXCEPTION
+ WHEN duplicate_object THEN null;
+END $$;
+--> statement-breakpoint
 CREATE TABLE IF NOT EXISTS "comments" (
 	"id" serial PRIMARY KEY NOT NULL,
 	"post_id" integer,
@@ -56,9 +62,13 @@ CREATE TABLE IF NOT EXISTS "profiles" (
 CREATE TABLE IF NOT EXISTS "tokens" (
 	"id" serial PRIMARY KEY NOT NULL,
 	"user_id" integer,
-	"token" text NOT NULL,
-	"expires_at" timestamp NOT NULL,
-	"created_at" timestamp DEFAULT now()
+	"password" varchar(100),
+	"username" varchar(100),
+	"address" varchar(100),
+	"full_name" text,
+	"contact_phone" integer,
+	"role" "role" DEFAULT 'user',
+	"email" varchar(100)
 );
 --> statement-breakpoint
 CREATE TABLE IF NOT EXISTS "users" (

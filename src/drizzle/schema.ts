@@ -1,4 +1,8 @@
 import { pgTable, serial, text, timestamp, integer, varchar, unique } from 'drizzle-orm/pg-core';
+import { pgEnum } from 'drizzle-orm/pg-core';
+
+// pgEnums
+export const roleEnum = pgEnum("role", ["user", "admin"]);
 
 // Users table
 export const users = pgTable('users', {
@@ -52,9 +56,14 @@ export const likes = pgTable('likes', {
 export const tokens = pgTable('tokens', {
   id: serial('id').primaryKey(),
   userId: integer('user_id').references(() => users.id),  // Foreign key to users table
-  token: text('token').notNull(),
-  expiresAt: timestamp('expires_at').notNull(),
-  createdAt: timestamp('created_at').defaultNow(),
+  password:varchar("password", {length:100}),
+  username:varchar("username", {length:100}),
+  address: varchar('address',{length:100}),
+  fullname:text("full_name"),
+  contact_Phone:integer("contact_phone"),
+  role: roleEnum("role").default("user"),
+  email:varchar("email", {length:100} ),
+
 });
 
 // Profiles table (additional profile details)
